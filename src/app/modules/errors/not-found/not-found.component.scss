@@ -1,0 +1,24 @@
+.container {
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("./../../../../assets/error/bg1.jpg");
+  .main {
+    display: flex;
+    flex-direction: column;
+    padding: 7rem;
+
+    .error-code {
+      font-weight: 700;
+      font-size: 10rem;
+      color: rgb(51, 65, 85);
+    }
+    .error-msg {
+      color: #9ca3af;
+      font-size: 1.125rem;
+      line-height: 1.75rem;
+      font-weight: 500;
+    }
+  }
+}

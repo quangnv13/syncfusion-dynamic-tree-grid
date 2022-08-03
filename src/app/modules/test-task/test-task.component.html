@@ -1,0 +1,50 @@
+<ejs-treegrid
+  [dataSource]="data"
+  idMapping="TaskId"
+  parentIdMapping="ParentId"
+  [treeColumnIndex]="1"
+  [editSettings]="editSettings"
+  [toolbar]="toolbar"
+  
+>
+  <e-columns >
+    <e-column
+      field="TaskId"
+      headerText="Task Id"
+      textAlign="Center"
+      isPrimaryKey="TaskID"
+    ></e-column>
+
+    <e-column
+      field="Taskname"
+      headerText="Task Name"
+      textAlign="left"
+    ></e-column>
+
+    <e-column
+      field="StartDate"
+      headerText="Start Date"
+      editType="datepickeredit"
+      format="yMd"
+      textAlign="Center"
+    ></e-column>
+
+    <e-column
+      field="Duration"
+      headerText="Duration"
+      textAlign="center"
+      type="number"
+      editType="numericedit"
+      [edit]="numericParams"
+    ></e-column>
+
+    <e-column
+      field="approved"
+      headerText="Approved"
+      type="boolean"
+      textAlign="center"
+      [displayAsCheckBox]="true"
+      editType="booleanedit"
+    ></e-column>
+  </e-columns>
+</ejs-treegrid>
