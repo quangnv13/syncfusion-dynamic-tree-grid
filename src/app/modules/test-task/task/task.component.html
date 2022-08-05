@@ -13,15 +13,16 @@
   [allowRowDragAndDrop]="true"
   [allowReordering]="true"
   (dataBound)="onDataBound()"
+  
+  [contextMenuItems]='contextMenuItems'
+  (contextMenuClick)='contextMenuClick($event)'
+  (contextMenuOpen)='contextMenuOpen($event)'
 >
   <e-columns>
     <e-column
       *ngFor="let item of columns"
       [field]="item.field"
       [headerText]="item.headerText"
-      [textAlign]="item.textAlign"
-      [width]="item.width"
-      [isPrimaryKey]="item.isPrimaryKey"
     ></e-column>
   </e-columns>
 </ejs-treegrid></div>

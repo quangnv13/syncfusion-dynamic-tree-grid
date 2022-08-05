@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   constructor(private socketSerice: SocketService) {}
   ngOnInit(): void {
     this.socketSerice.connect(environment.baseSocketIo, {
-      extraHeaders: { Authorization: storage.get('currentAccount') },
+      extraHeaders: { Authorization:  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF1YW5nMTMiLCJpYXQiOjE2NTk1OTYzNTh9.hJ62NT3YKEuaCQL-w7ESW_E8oIUs1boCsvK0nbW4ndM'|| storage.get('currentAccount') },
     });
   }
 }
