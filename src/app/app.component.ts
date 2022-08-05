@@ -12,8 +12,8 @@ export class AppComponent implements OnInit {
   title = 'mgm-poc';
   constructor(private socketSerice: SocketService) {}
   ngOnInit(): void {
-    // this.socketSerice.connect(environment.baseSocketIo, {
-    //   extraHeaders: { Authorization: storage.get('currentAccount') },
-    // });
+    this.socketSerice.connect(environment.baseSocketIo, {
+      extraHeaders: { Authorization: storage.get('currentAccount') },
+    });
   }
 }

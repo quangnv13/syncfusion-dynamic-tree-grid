@@ -1,16 +1,18 @@
-<ejs-treegrid
+<div style="height: 97vh; width: 100vw;">
+  <ejs-treegrid
   #testTask
   [dataSource]="dataSource"
   idMapping="taskId"
   parentIdMapping="parentId"
   [treeColumnIndex]="0"
-  [enableInfiniteScrolling]="true"
-  [enableVirtualization]="false"
-  [height]="'50vh'"
+  [enableInfiniteScrolling]="false"
+  [enableVirtualization]="true"
+  [height]="'100%'"
+  [width]="'100%'"
   [allowResizing]="true"
   [allowRowDragAndDrop]="true"
   [allowReordering]="true"
-  (dataBound)="onDataBound($event)"
+  (dataBound)="onDataBound()"
 >
   <e-columns>
     <e-column
@@ -22,4 +24,4 @@
       [isPrimaryKey]="item.isPrimaryKey"
     ></e-column>
   </e-columns>
-</ejs-treegrid>
+</ejs-treegrid></div>

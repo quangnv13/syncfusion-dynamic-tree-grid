@@ -25,17 +25,10 @@
   [filterSettings]="filterSettings"
    -->
   <e-columns>
-    <e-column
-      *ngFor="let item of column"
-      field="{{ item.field }}"
-      headerText="{{ item.headerText }}"
-      textAlign="{{ item.textAlign }}"
-      width="{{ item.width }}"
-      minWidth="{{ item.minWidth }}"
-      maxWidth="{{ item.maxWidth }}"
-      isPrimaryKey={{item.isPrimaryKey}}
-      editType="{{item.editType}}"
-    ></e-column>
+    <e-column field='TaskId' headerText='Task ID' textAlign='Right' width="90"></e-column>
+    <e-column field='TaskName' headerText='Task Name' textAlign='Left' width="180"></e-column>
+    <!-- <e-column field='StartDate' headerText='Start Date' textAlign='Right' format='yMd' width="120"></e-column> -->
+    <e-column field='Duration' headerText='Duration' textAlign='Right' width="110"></e-column>
     <!-- 
 
     <e-column

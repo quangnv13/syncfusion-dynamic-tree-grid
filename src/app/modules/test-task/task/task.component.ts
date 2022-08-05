@@ -21,13 +21,11 @@ export class TaskComponent implements OnInit {
       this.dataSource = res.data.dataSource;
       this.columns = res.data.columns;
       this.config =res.data.config;
-      console.log(res.data)
     })
   }
 
   
-  onDataBound($event: any) {
-    // this.treeGridObj.
+  onDataBound() {
+    this.treeGridObj.autoFitColumns([]);
   }
-
 }

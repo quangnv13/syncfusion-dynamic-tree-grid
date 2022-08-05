@@ -13,7 +13,7 @@ export enum ESocketStatus {
 })
 export class SocketService {
   socketIO!: Socket;
-  statusSubject = new Subject<ESocketStatus>();
+  private statusSubject = new Subject<ESocketStatus>();
   status$ = this.statusSubject.asObservable();
 
   constructor() {}

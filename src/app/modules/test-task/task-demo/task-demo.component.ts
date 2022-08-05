@@ -101,7 +101,7 @@ export class TaskDemoComponent implements OnInit {
     return false;
   }
   onDataBound($event: any) {
-    this.treeGridObj.autoFitColumns(['Duration']);
+    this.treeGridObj.autoFitColumns([]);
   }
 
   //contextMenu
