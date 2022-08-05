@@ -1,0 +1,25 @@
+<ejs-treegrid
+  #testTask
+  [dataSource]="dataSource"
+  idMapping="taskId"
+  parentIdMapping="parentId"
+  [treeColumnIndex]="0"
+  [enableInfiniteScrolling]="true"
+  [enableVirtualization]="false"
+  [height]="'50vh'"
+  [allowResizing]="true"
+  [allowRowDragAndDrop]="true"
+  [allowReordering]="true"
+  (dataBound)="onDataBound($event)"
+>
+  <e-columns>
+    <e-column
+      *ngFor="let item of columns"
+      [field]="item.field"
+      [headerText]="item.headerText"
+      [textAlign]="item.textAlign"
+      [width]="item.width"
+      [isPrimaryKey]="item.isPrimaryKey"
+    ></e-column>
+  </e-columns>
+</ejs-treegrid>

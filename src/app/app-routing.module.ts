@@ -4,7 +4,7 @@ import { SharedModule } from './shared/shared.module';
 
 export const routes: Routes = [
   {
-    path: 'auth',
+    path: '',
     loadChildren: () =>
       import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
@@ -14,7 +14,7 @@ export const routes: Routes = [
       import('./modules/errors/errors.module').then((m) => m.ErrorModule),
   },
   {
-    path: '',
+    path: 'task',
     loadChildren: () =>
       import('./modules/test-task/test-task.module').then(
         (m) => m.TestTaskModule

@@ -11,11 +11,10 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  EMAIL_PATTERN = Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$');
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, this.EMAIL_PATTERN]],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required]]
     })
   }
@@ -28,8 +27,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    this.router.navigate([''])
+    this.authService
+    .login(this.loginForm.value)
   }
-  
-
 }

@@ -16,6 +16,7 @@ export let sampleData: Object[] = [
     Priority: 'Fucher',
     EndDate: '3/24/2022',
     Progress: 2,
+    ParentId: null,
   },
   {
     TaskId: 3,
@@ -25,7 +26,7 @@ export let sampleData: Object[] = [
     Priority: 'MacChaell',
     EndDate: '7/14/2022',
     Progress: 3,
-    ParentId:  1
+    ParentId: 1,
   },
   {
     TaskId: 4,
@@ -35,7 +36,7 @@ export let sampleData: Object[] = [
     Priority: 'Acott',
     EndDate: '1/11/2022',
     Progress: 4,
-    ParentId:  1
+    ParentId: 1,
   },
   {
     TaskId: 5,
@@ -54,7 +55,7 @@ export let sampleData: Object[] = [
     Priority: 'Grouse',
     EndDate: '10/29/2021',
     Progress: 6,
-    ParentId:  1
+    ParentId: 1,
   },
   {
     TaskId: 7,
@@ -73,7 +74,7 @@ export let sampleData: Object[] = [
     Priority: 'Dinis',
     EndDate: '10/11/2021',
     Progress: 8,
-    ParentId:  1
+    ParentId: 1,
   },
   {
     TaskId: 9,
@@ -92,7 +93,7 @@ export let sampleData: Object[] = [
     Priority: 'Tregona',
     EndDate: '11/7/2021',
     Progress: 10,
-    ParentId:  4
+    ParentId: 4,
   },
   {
     TaskId: 11,
@@ -9004,4 +9005,45 @@ export let sampleData: Object[] = [
     EndDate: '3/28/2022',
     Progress: 1000,
   },
+];
+
+export let column: any[] = [
+  {
+    field: 'TaskId',
+    headerText: 'Task Id',
+    textAlign: 'Center',
+    isPrimaryKey: 'TaskId',
+    width: '100',
+    minWidth: '100',
+    maxWidth: '150',
+  },
+  {
+    field: 'Taskname',
+    headerText: 'Task Name',
+    textAlign: 'left',
+    width: '150',
+    minWidth: '150',
+    maxWidth: '300',
+  },
+  {
+    field: "StartDate",
+    headerText: "Start Date",
+    editType: "datepickeredit",
+    format: "yMd",
+    textAlign: "Center",
+    width: "150",
+    minWidth: "150",
+    maxWidth: "200"
+  },
+  {
+    
+    field: "Duration",
+    headerText: "Duration",
+    textAlign: "center",
+    type: "number",
+    editType: "numericedit",
+    width: "150",
+    minWidth: "150",
+    maxWidth: "200",
+  }
 ];
