@@ -1,69 +1,44 @@
-<ejs-treegrid
-#testTask
-  [dataSource]="data"
-  idMapping="TaskId"
-  parentIdMapping="ParentId"
-  [treeColumnIndex]="1"
-  gridLines="Both"
-  [enableInfiniteScrolling]="false"
-  [enableVirtualization]="true"
-  [height]="'100vh'"
-  [pageSettings]="pageSettings"
-  [allowResizing]="true"
-  [allowRowDragAndDrop]="true"
-  [allowReordering]="true"
-  (dataBound)='onDataBound($event)'
-
-  [contextMenuItems]='contextMenuItems'
-  (contextMenuClick)='contextMenuClick($event)'
-  (contextMenuOpen)='contextMenuOpen($event)'
->
-  <!--
+<div style="height: 97vh; width: 100vw">
+  <ejs-treegrid
+    #testTask
+    [dataSource]="data"
+    idMapping="TaskId"
+    parentIdMapping="ParentId"
+    [treeColumnIndex]="0"
+    gridLines="Both"
+    [enableInfiniteScrolling]="false"
+    [enableVirtualization]="true"
+    [height]="'100%'"
+    [width]="'100%'"
+    [pageSettings]="pageSettings"
+    [allowResizing]="true"
+    [allowRowDragAndDrop]="true"
+    [allowReordering]="true"
+    (dataBound)="onDataBound($event)"
+    [contextMenuItems]="contextMenuItems"
+    (contextMenuClick)="contextMenuClick($event)"
+    (contextMenuOpen)="contextMenuOpen($event)"
+  >
+    <!--
     showColumnMenu="true"
   [allowSorting]="true"
   [allowFiltering]="true"
   [filterSettings]="filterSettings"
    -->
-  <e-columns>
-    <e-column field='TaskId' headerText='Task ID' textAlign='Right' width="90"></e-column>
-    <e-column field='TaskName' headerText='Task Name' textAlign='Left' width="180"></e-column>
-    <!-- <e-column field='StartDate' headerText='Start Date' textAlign='Right' format='yMd' width="120"></e-column> -->
-    <e-column field='Duration' headerText='Duration' textAlign='Right' width="110"></e-column>
-    <!-- 
-
     <e-column
-      field="StartDate"
-      headerText="Start Date"
-      editType="datepickeredit"
-      format="yMd"
-      textAlign="Center"
-      width="150"
-      minWidth="150"
-      maxWidth="200"
+      *ngFor="let item of column"
+      field="{{ item.field }}"
+      headerText="{{ item.headerText }}"
+      textAlign="{{ item.textAlign }}"
+      width="{{ item.width }}"
+      minWidth="{{ item.minWidth }}"
+      maxWidth="{{ item.maxWidth }}"
+      isPrimaryKey="{{ item.isPrimaryKey }}"
+      editType="{{ item.editType }}"
     ></e-column>
-
-    <e-column
-      field="Duration"
-      headerText="Duration"
-      textAlign="center"
-      type="number"
-      editType="numericedit"
-      [edit]="numericParams"
-      width="150"
-      minWidth="150"
-      maxWidth="200"
-    ></e-column>
-
-    <e-column
-      field="approved"
-      headerText="Approved"
-      type="boolean"
-      textAlign="center"
-      [displayAsCheckBox]="true"
-      editType="booleanedit"
-      width="150"
-      minWidth="150"
-      maxWidth="200"
-    ></e-column> -->
-  </e-columns>
-</ejs-treegrid>
+  </ejs-treegrid>
+  <ngx-loading
+    [show]="loading"
+    [config]="{ backdropBorderRadius: '3px' }"
+  ></ngx-loading>
+</div>

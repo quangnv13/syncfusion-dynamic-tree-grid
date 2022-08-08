@@ -1,28 +1,31 @@
-<div style="height: 97vh; width: 100vw;">
+<div style="height: 97vh; width: 100vw">
   <ejs-treegrid
-  #testTask
-  [dataSource]="dataSource"
-  idMapping="taskId"
-  parentIdMapping="parentId"
-  [treeColumnIndex]="0"
-  [enableInfiniteScrolling]="false"
-  [enableVirtualization]="true"
-  [height]="'100%'"
-  [width]="'100%'"
-  [allowResizing]="true"
-  [allowRowDragAndDrop]="true"
-  [allowReordering]="true"
-  (dataBound)="onDataBound()"
-  
-  [contextMenuItems]='contextMenuItems'
-  (contextMenuClick)='contextMenuClick($event)'
-  (contextMenuOpen)='contextMenuOpen($event)'
->
-  <e-columns>
-    <e-column
-      *ngFor="let item of columns"
-      [field]="item.field"
-      [headerText]="item.headerText"
-    ></e-column>
-  </e-columns>
-</ejs-treegrid></div>
+    #testTask
+    [dataSource]="dataSource"
+    idMapping="taskId"
+    parentIdMapping="parentId"
+    [treeColumnIndex]="0"
+    [enableInfiniteScrolling]="false"
+    [enableVirtualization]="true"
+    [height]="'100%'"
+    [width]="'100%'"
+    [allowResizing]="true"
+    [allowRowDragAndDrop]="true"
+    [allowReordering]="true"
+    (dataBound)="onDataBound()"
+    gridLines="Both"
+    [contextMenuItems]="contextMenuItems"
+    (contextMenuClick)="contextMenuClick($event)"
+    (contextMenuOpen)="contextMenuOpen($event)"
+  >
+    <e-columns>
+      <e-column
+        *ngFor="let item of columns"
+        [field]="item.field"
+        [headerText]="item.headerText"
+      ></e-column>
+    </e-columns>
+  </ejs-treegrid>
+
+  <ngx-loading [show]="loading"></ngx-loading>
+</div>

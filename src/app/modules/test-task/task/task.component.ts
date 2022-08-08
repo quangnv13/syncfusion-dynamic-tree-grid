@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { TreeGridComponent } from '@syncfusion/ej2-angular-treegrid';
 import { TestTaskService } from '../services/test-task.service';
 import { MenuEventArgs } from '@syncfusion/ej2-navigations';
@@ -10,17 +16,20 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class TaskComponent implements OnInit {
-  dataSource: any[]= [];
+  dataSource: any[] = [];
   columns: any[] = [];
   config: any = {};
-  contextMenuItems: any =[];
-  @ViewChild('testTask')
-  
-  public treeGridObj!: TreeGridComponent;
-  constructor(private taskService: TestTaskService, private socketService: SocketService, private toast: ToastrService) { }
+  contextMenuItems: any = [];
+  public loading: boolean = true;
+  @ViewChild('testTask') treeGridObj!: TreeGridComponent;
+  constructor(
+    private taskService: TestTaskService,
+    private socketService: SocketService,
+    private toast: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.contextMenuItems = [
@@ -37,50 +46,54 @@ export class TaskComponent implements OnInit {
       { text: 'Expand the Row', target: '.e-content', id: 'expandrow' },
     ];
 
-    this.taskService.getCurrentState().subscribe(res => {
+    this.taskService.getCurrentState().subscribe((res) => {
       this.dataSource = res.data.dataSource;
       this.columns = res.data.columns;
-      this.config =res.data.config;
+      this.config = res.data.config;
       this.socketService.listen('addCol').subscribe((col: any) => {
-        this.dataSource.map(v => Object.assign(v, {[col.field]: null}));
+        this.dataSource.map((v) => Object.assign(v, { [col.field]: null }));
         this.columns.push(col);
       });
-    })
+
+      this.loading = false;
+    });
   }
 
-  
   onDataBound() {
     this.treeGridObj.autoFitColumns([]);
   }
 
   //contextMenu
   contextMenuClick(args: MenuEventArgs): void {
-    if(args.item.id === 'addCol') {
+    if (args.item.id === 'addCol') {
       this.addColumn();
     }
   }
 
-  addColumn() { 
-    this.socketService.emit('addCol',{
-      field: 'taskId5',
-      headerText: 'task5'
-    }, (err) => {
-      console.log(err);
-      if(!err) {
-        this.dataSource.map(v => Object.assign(v, {'taskId5': null}));
-        this.columns.push({
-          field: 'taskId5',
-          headerText: 'task5'
-        });
-        console.log(this.dataSource)
-      } else {
-        this.toast.error(err.message);
+  addColumn() {
+    this.socketService.emit(
+      'addCol',
+      {
+        field: 'taskId5',
+        headerText: 'task5',
+      },
+      (err) => {
+        console.log(err);
+        if (!err) {
+          this.dataSource.map((v) => Object.assign(v, { taskId5: null }));
+          this.columns.push({
+            field: 'taskId5',
+            headerText: 'task5',
+          });
+          console.log(this.dataSource);
+        } else {
+          this.toast.error(err.message);
+        }
       }
-    })
-  } 
+    );
+  }
 
   contextMenuOpen(arg?: BeforeOpenCloseEventArgs): void {
     // console.log(arg);
   }
-  
 }

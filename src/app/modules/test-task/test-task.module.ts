@@ -16,12 +16,13 @@ import {
   ContextMenuService,
   ReorderService,
   ColumnMenuService,
-  VirtualScrollService 
+  VirtualScrollService,
 } from '@syncfusion/ej2-angular-treegrid';
 
 import { FilterService } from '@syncfusion/ej2-angular-treegrid';
 import { TaskComponent } from './task/task.component';
 import { TaskDemoComponent } from './task-demo/task-demo.component';
+import { NgxLoadingModule } from 'ngx-loading';
 
 const syncfusionService = [
   FilterService,
@@ -35,14 +36,19 @@ const syncfusionService = [
   EditService,
   ToolbarService,
   InfiniteScrollService,
-  ReorderService, 
-  ColumnMenuService ,
+  ReorderService,
+  ColumnMenuService,
   VirtualScrollService,
 ];
 
 @NgModule({
   declarations: [TestTaskComponent, TaskComponent, TaskDemoComponent],
-  imports: [CommonModule, TestTaskRoutingModule, TreeGridModule],
+  imports: [
+    CommonModule,
+    TestTaskRoutingModule,
+    TreeGridModule,
+    NgxLoadingModule,
+  ],
   providers: [...syncfusionService],
 })
 export class TestTaskModule {}

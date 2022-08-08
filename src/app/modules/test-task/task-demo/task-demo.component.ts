@@ -10,12 +10,12 @@ import { column, sampleData } from 'src/app/shared/dataSource';
 import { MenuEventArgs } from '@syncfusion/ej2-navigations';
 import { getValue, isNullOrUndefined } from '@syncfusion/ej2-base';
 import { BeforeOpenCloseEventArgs } from '@syncfusion/ej2-inputs';
-
+import { DialogUtility } from '@syncfusion/ej2-angular-popups';
 
 @Component({
   selector: 'app-task-demo',
   templateUrl: './task-demo.component.html',
-  styleUrls: ['./task-demo.component.scss']
+  styleUrls: ['./task-demo.component.scss'],
 })
 export class TaskDemoComponent implements OnInit {
   public data: Object[] | undefined = sampleData;
@@ -34,6 +34,9 @@ export class TaskDemoComponent implements OnInit {
   public filterSettings!: Object;
   @ViewChild('testTask')
   public treeGridObj!: TreeGridComponent;
+  dialogObj: any;
+
+  public loading: boolean = false;
 
   constructor() {}
 
@@ -79,14 +82,14 @@ export class TaskDemoComponent implements OnInit {
     ];
 
     this.contextMenuItems = [
-      { text: 'AddCol', target: '.e-headertext', id: 'addCol' },
-      { text: 'EditCol', target: '.e-headertext', id: 'editCol' },
-      { text: 'ViewCol', target: '.e-headertext', id: 'viewCol' },
-      { text: 'DelCol', target: '.e-headertext', id: 'delCol' },
-      { text: 'ChooseCol', target: '.e-headertext', id: 'chooseCol' },
-      { text: 'FreezeCol', target: '.e-headertext', id: 'freezeCol' },
-      { text: 'FilterCol', target: '.e-headertext', id: 'filterCol' },
-      { text: 'MultiSort', target: '.e-headertext', id: 'multiSort' },
+      { text: 'AddCol', target: '.e-headercell', id: 'addCol' },
+      { text: 'EditCol', target: '.e-headercell', id: 'editCol' },
+      { text: 'ViewCol', target: '.e-headercell', id: 'viewCol' },
+      { text: 'DelCol', target: '.e-headercell', id: 'delCol' },
+      { text: 'ChooseCol', target: '.e-headercell', id: 'chooseCol' },
+      { text: 'FreezeCol', target: '.e-headercell', id: 'freezeCol' },
+      { text: 'FilterCol', target: '.e-headercell', id: 'filterCol' },
+      { text: 'MultiSort', target: '.e-headercell', id: 'multiSort' },
 
       { text: 'Collapse the Row', target: '.e-content', id: 'collapserow' },
       { text: 'Expand the Row', target: '.e-content', id: 'expandrow' },
@@ -94,12 +97,6 @@ export class TaskDemoComponent implements OnInit {
     this.pager = { pageSize: 8 };
   }
 
-  onRightClick($event: any) {
-    alert('right click');
-    console.log($event);
-
-    return false;
-  }
   onDataBound($event: any) {
     this.treeGridObj.autoFitColumns([]);
   }
@@ -107,13 +104,32 @@ export class TaskDemoComponent implements OnInit {
   //contextMenu
   contextMenuClick(args: MenuEventArgs): void {
     this.treeGridObj.getColumnByField('taskID');
-    // thi
+    if (args.item.id === 'addCol') {
+      this.addColumn();
+    }
   }
-
-  changeOrder() { 
-  } 
 
   contextMenuOpen(arg?: BeforeOpenCloseEventArgs): void {
     console.log(arg);
+  }
+
+  addColumn() {
+    this.dialogObj = DialogUtility.confirm({
+      title: ' Add Column',
+      content: 'add',
+      okButton: { text: 'Save', click: this.saveClick.bind(this) },
+      cancelButton: { text: 'Cancel', click: this.cancelClick.bind(this) },
+      showCloseIcon: true,
+      closeOnEscape: true,
+      animationSettings: { effect: 'Zoom' },
+    });
+    return this.dialogObj;
+  }
+
+  saveClick() {
+    alert('ok');
+  }
+  cancelClick() {
+    this.dialogObj.hide();
   }
 }
