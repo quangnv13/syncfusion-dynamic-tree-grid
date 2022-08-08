@@ -8,6 +8,7 @@ export enum ESocketStatus {
   ERROR = 'ERROR',
 }
 
+type ResponseCallback = (error?: Error) => void;
 @Injectable({
   providedIn: 'root',
 })
@@ -43,7 +44,7 @@ export class SocketService {
     return subject.asObservable();
   }
 
-  emit<T>(event: string, data: T) {
-    this.socketIO.emit(event, data);
+  emit<T>(event: string, data: T, resCallback?: ResponseCallback) {
+    this.socketIO.emit(event, data, resCallback);
   }
 }
