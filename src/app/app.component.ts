@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     this.authService.currentAccount$.subscribe((token) => {
       token.length > 0
         ? this.connectSocketIO(token)
-        : this.router.navigate(['auth/login']);
+        : environment.production ? this.router.navigate(['auth/login']): this.connectSocketIO('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF1YW5nMTIzIiwiaWF0IjoxNjU5NjA3ODI1fQ.1jwJ2zOKx_82wqNfMkG8ki57JrBu6-0Ye3KdeWps8_0');
     });
   }
 

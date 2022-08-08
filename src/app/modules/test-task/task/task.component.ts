@@ -50,12 +50,11 @@ export class TaskComponent implements OnInit {
       this.dataSource = res.data.dataSource;
       this.columns = res.data.columns;
       this.config = res.data.config;
+      this.loading = false;
       this.socketService.listen('addCol').subscribe((col: any) => {
         this.dataSource.map((v) => Object.assign(v, { [col.field]: null }));
         this.columns.push(col);
       });
-
-      this.loading = false;
     });
   }
 
